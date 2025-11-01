@@ -1,6 +1,6 @@
 # DigitalOcean App Platform Configuration
 name: doortoindia
-region: nyc
+region: blr  # Bangalore region for India
 
 services:
   - name: web
@@ -9,12 +9,13 @@ services:
       branch: main
       deploy_on_push: true
     
-    build_command: pnpm install && pnpm build
-    run_command: pnpm start
+    # Use Buildpack strategy (simpler than Docker)
+    build_command: npm install && npm run build
+    run_command: npm start
     
     environment_slug: node-js
     instance_count: 1
-    instance_size_slug: basic-xxs
+    instance_size_slug: basic-xxs  # $5/month plan
     
     http_port: 3000
     
@@ -29,7 +30,7 @@ services:
       success_threshold: 1
       failure_threshold: 3
     
-    # Environment variables (add your custom ones here)
+    # Environment variables
     envs:
       - key: NODE_ENV
         value: production
