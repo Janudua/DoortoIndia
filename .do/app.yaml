@@ -1,0 +1,37 @@
+# DigitalOcean App Platform Configuration
+name: doortoindia
+region: nyc
+
+services:
+  - name: web
+    github:
+      repo: Janudua/DoortoIndia
+      branch: main
+      deploy_on_push: true
+    
+    build_command: pnpm install && pnpm build
+    run_command: pnpm start
+    
+    environment_slug: node-js
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    
+    http_port: 3000
+    
+    routes:
+      - path: /
+    
+    health_check:
+      http_path: /
+      initial_delay_seconds: 30
+      period_seconds: 10
+      timeout_seconds: 5
+      success_threshold: 1
+      failure_threshold: 3
+    
+    # Environment variables (add your custom ones here)
+    envs:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
