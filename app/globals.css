@@ -1,0 +1,176 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* India-inspired color palette */
+  --background: #fefbf5;
+  --foreground: #1a1410;
+  --card: #ffffff;
+  --card-foreground: #1a1410;
+  --popover: #ffffff;
+  --popover-foreground: #1a1410;
+  --primary: #c56c1a;
+  --primary-foreground: #ffffff;
+  --secondary: #2d5836;
+  --secondary-foreground: #ffffff;
+  --muted: #e8dcc8;
+  --muted-foreground: #6b5d50;
+  --accent: #d4a574;
+  --accent-foreground: #1a1410;
+  --destructive: #dc2626;
+  --destructive-foreground: #fefbf5;
+  --border: #e8dcc8;
+  --input: #fefbf5;
+  --ring: #c56c1a;
+  --chart-1: #c56c1a;
+  --chart-2: #2d5836;
+  --chart-3: #d4a574;
+  --chart-4: #8b6f47;
+  --chart-5: #a67c52;
+  --radius: 0.625rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1a1410;
+  --sidebar-primary: #c56c1a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #d4a574;
+  --sidebar-accent-foreground: #1a1410;
+  --sidebar-border: #e8dcc8;
+  --sidebar-ring: #c56c1a;
+  --font-sans: "Poppins", "Poppins Fallback";
+  --font-serif: "Playfair Display", "Playfair Display Fallback";
+}
+
+.dark {
+  --background: #0f0e0a;
+  --foreground: #fefbf5;
+  --card: #1a1410;
+  --card-foreground: #fefbf5;
+  --popover: #1a1410;
+  --popover-foreground: #fefbf5;
+  --primary: #e8915f;
+  --primary-foreground: #0f0e0a;
+  --secondary: #5a8f6d;
+  --secondary-foreground: #0f0e0a;
+  --muted: #3a2f26;
+  --muted-foreground: #b8a897;
+  --accent: #d4a574;
+  --accent-foreground: #0f0e0a;
+  --destructive: #f87171;
+  --destructive-foreground: #0f0e0a;
+  --border: #3a2f26;
+  --input: #1a1410;
+  --ring: #e8915f;
+  --chart-1: #e8915f;
+  --chart-2: #5a8f6d;
+  --chart-3: #d4a574;
+  --chart-4: #a67c52;
+  --chart-5: #c58d6f;
+  --sidebar: #1a1410;
+  --sidebar-foreground: #fefbf5;
+  --sidebar-primary: #e8915f;
+  --sidebar-primary-foreground: #0f0e0a;
+  --sidebar-accent: #d4a574;
+  --sidebar-accent-foreground: #0f0e0a;
+  --sidebar-border: #3a2f26;
+  --sidebar-ring: #e8915f;
+}
+
+@theme inline {
+  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Typography */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif);
+  }
+}
+
+/* Smooth scrolling and animations */
+html {
+  scroll-behavior: smooth;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Activity Card Animations */
+.activity-card {
+  animation: slideInUp 0.6s ease-out both;
+  animation-delay: var(--animation-delay, 0s);
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-in-out;
+}
