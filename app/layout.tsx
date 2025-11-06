@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Poppins, Playfair_Display } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { DataProvider } from "@/contexts/data-context"
 import "./globals.css"
 
 const poppins = Poppins({
@@ -30,7 +31,9 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body className={`${poppins.className} antialiased`}>
-        {children}
+        <DataProvider>
+          {children}
+        </DataProvider>
         <Analytics />
       </body>
     </html>
